@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import actions from '../../redux/phonebook/phonebook-actions';
+import * as actions from '../../redux/phonebook/phonebook-actions';
 import styles from './ContactList.module.css';
 
 const ContactsList = ({ contactsData, onDeleteContact }) => (

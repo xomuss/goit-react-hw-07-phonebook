@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import actions from '../../redux/phonebook/phonebook-actions';
+import operations from '../../redux/phonebook/phonebook-operations';
 import styles from './Form.module.css';
 import shortid from 'shortid';
 
@@ -81,7 +81,7 @@ class Form extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  onSubmit: cont => dispatch(actions.addContact(cont)),
+  onSubmit: cont => dispatch(operations.addContact(cont)),
 });
 
 const mapStateToProps = state => ({
