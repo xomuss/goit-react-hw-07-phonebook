@@ -3,14 +3,16 @@ import { createReducer } from '@reduxjs/toolkit';
 import {
   addContactRequest,
   addContactSuccess,
-  addContatError,
-  deleteContact,
+  addContactError,
+  deleteContactRequest,
+  deleteContactSuccess,
+  deleteContactError,
   filterContscts,
 } from './phonebook-actions';
 
 const items = createReducer([], {
   [addContactSuccess]: (state, { payload }) => [...state, payload],
-  [deleteContact]: (state, { payload }) =>
+  [deleteContactSuccess]: (state, { payload }) =>
     state.filter(({ id }) => id !== payload),
 });
 
@@ -21,10 +23,15 @@ const filter = createReducer('', {
 const loading = createReducer(false, {
   [addContactRequest]: () => true,
   [addContactSuccess]: () => false,
-  [addContatError]: () => false,
+  [addContactError]: () => false,
+
+  [deleteContactRequest]: () => true,
+  [deleteContactSuccess]: () => false,
+  [deleteContactError]: () => false,
 });
 
 export default combineReducers({
   items,
   filter,
+  loading,
 });

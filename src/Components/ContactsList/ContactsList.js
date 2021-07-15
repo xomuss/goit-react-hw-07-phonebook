@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../../redux/phonebook/phonebook-actions';
+import operations from '../../redux/phonebook/phonebook-operations';
 import styles from './ContactList.module.css';
 
 const ContactsList = ({ contactsData, onDeleteContact }) => (
@@ -29,7 +29,7 @@ const mapStateToProps = ({ contacts: { items, filter } }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onDeleteContact: id => dispatch(actions.deleteContact(id)),
+  onDeleteContact: id => dispatch(operations.deleteContact(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContactsList);

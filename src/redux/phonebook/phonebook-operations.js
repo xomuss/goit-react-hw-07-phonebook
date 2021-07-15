@@ -2,20 +2,33 @@ import axios from 'axios';
 import {
   addContactRequest,
   addContactSuccess,
-  addContatError,
+  addContactError,
+  deleteContactRequest,
+  deleteContactSuccess,
+  deleteContactError,
 } from './phonebook-actions';
 
 axios.defaults.baseURL = 'http://localhost:3004';
 
 const addContact = contact => dispatch => {
-  dispatch(addContactRequest);
+  dispatch(addContactRequest());
 
   axios
     .post('/contacts', contact)
     .then(({ data }) => dispatch(addContactSuccess(data)))
-    .catch(error => dispatch(addContatError(error)));
+    .catch(error => dispatch(addContactError(error)));
+};
+
+const deleteContact = id => dispatch => {
+  dispatch(deleteContactRequest());
+
+  axios
+    .delete(`/contacts/${id}`)
+    .then(() => dispatch(deleteContactSuccess(id)))
+    .catch(error => dispatch(deleteContactError(error)));
 };
 
 export default {
   addContact,
+  deleteContact,
 };
