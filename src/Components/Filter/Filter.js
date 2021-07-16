@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './Filter.module.css';
 import * as actions from '../../redux/phonebook/phonebook-actions';
 import { connect } from 'react-redux';
+import selectors from '../../redux/phonebook/phonebook-selectors';
 
 const Filter = ({ onChange, value }) => (
   <label>
@@ -17,7 +18,7 @@ const Filter = ({ onChange, value }) => (
 
 const mapStateToProps = state => {
   return {
-    value: state.contacts.filter,
+    value: selectors.getFilter(state),
   };
 };
 

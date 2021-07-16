@@ -4,6 +4,7 @@ import Form from './Components/Form';
 import Filter from './Components/Filter';
 import { connect } from 'react-redux';
 import operations from './redux/phonebook/phonebook-operations';
+import selectors from './redux/phonebook/phonebook-selectors';
 
 class App extends Component {
   state = {
@@ -30,7 +31,7 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  isLoadingContacts: state.contacts.loading,
+  isLoadingContacts: selectors.getLoading(state),
 });
 
 const mapDispatchToProps = dispatch => ({
