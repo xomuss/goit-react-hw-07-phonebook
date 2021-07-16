@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import ContactsList from './Components/ContactsList';
 import Form from './Components/Form';
 import Filter from './Components/Filter';
+import { connect } from 'react-redux';
+import operations from './redux/phonebook/phonebook-operations';
 
 class App extends Component {
   state = {
@@ -9,20 +11,9 @@ class App extends Component {
     // filter: '',
   };
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (this.state.contacts !== prevState.contacts) {
-  //     localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
-  //   }
-  // }
-
-  // componentDidMount() {
-  //   const contacts = localStorage.getItem('contacts');
-  //   const parsedContacts = JSON.parse(contacts);
-
-  //   if (parsedContacts) {
-  //     this.setState({ contacts: parsedContacts });
-  //   }
-  // }
+  componentDidMount() {
+    this.props.fetchContacts();
+  }
 
   render() {
     return (
@@ -31,10 +22,19 @@ class App extends Component {
         <Form onSubmit={this.formSubmitHandler} />
         <h2>Contacts</h2>
         <Filter />
+        {this.props.isLoadingContacts && <h1>download...</h1>}
         <ContactsList />
       </>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  isLoadingContacts: state.contacts.loading,
+});
+
+const mapDispatchToProps = dispatch => ({
+  fetchContacts: () => dispatch(operations.fetchContacts()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
