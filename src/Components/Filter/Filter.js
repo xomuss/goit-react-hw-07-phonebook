@@ -1,8 +1,7 @@
 import React from 'react';
 import styles from './Filter.module.css';
-import * as actions from '../../redux/phonebook/phonebook-actions';
 import { connect } from 'react-redux';
-import selectors from '../../redux/phonebook/phonebook-selectors';
+import { phonebookSelectors, filterContscts } from '../../redux/phonebook';
 
 const Filter = ({ onChange, value }) => (
   <label>
@@ -18,14 +17,14 @@ const Filter = ({ onChange, value }) => (
 
 const mapStateToProps = state => {
   return {
-    value: selectors.getFilter(state),
+    value: phonebookSelectors.getFilter(state),
   };
 };
 
 const mapDispatchToProps = dispatch => ({
   onChange: e => {
     const value = e.target.value;
-    return dispatch(actions.filterContscts(value));
+    return dispatch(filterContscts(value));
   },
 });
 

@@ -2,6 +2,7 @@
   "name": "goit-react-hw-07-phonebook",
   "version": "0.1.0",
   "private": true,
+    "homepage": "https://xomuss.github.io/goit-react-hw-07-phonebook",
   "dependencies": {
     "@reduxjs/toolkit": "^1.6.0",
     "@testing-library/jest-dom": "^5.14.1",
@@ -25,6 +26,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "jserv": "json-server --watch db.json --port 3004 --delay 300"
   },
   "eslintConfig": {
